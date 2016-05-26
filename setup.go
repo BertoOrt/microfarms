@@ -36,7 +36,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p interface{}) {
 	log.Println("GET " + tmpl)
 }
 
-// SendJSON Will send out a json message to the client
+// sendJSON Will send out a json message to the client
 func sendJSON(w http.ResponseWriter, data interface{}) {
 	w.Header().Add("Content-Type", "application/json")
 	msg, err := json.Marshal(data)
