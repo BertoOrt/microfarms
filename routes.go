@@ -28,8 +28,14 @@ func OAuth(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 // OAuthCallback google login route
 func OAuthCallback(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 	code := req.URL.Query().Get("code")
-	user := fetchUser(code)
+	token := fetchToken(code)
+	user := fetchUser(token)
 	fmt.Printf("user: %v", user)
+	// next steps:
+	// create jwt from user info
+	// store in client localstorage
+	// store users
+	// redirect to homepage after logged in with Google
 	attr := attributes{Title: "Index"}
 	renderTemplate(res, "index", &attr)
 }
