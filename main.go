@@ -12,6 +12,8 @@ func main() {
 	router := httprouter.New()
 	router.ServeFiles("/public/*filepath", http.Dir("public"))
 	router.GET("/", index)
-	log.Println("Running on port " + port)
+	router.GET("/google", OAuth)
+	router.GET("/auth/callback", OAuthCallback)
+	log.Printf("Running on port: %v", port)
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }
