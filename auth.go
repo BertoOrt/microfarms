@@ -8,7 +8,9 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
 )
@@ -61,6 +63,7 @@ func (g *Gplus) setConfig() {
 }
 
 var gplus Gplus
+var publicKey []byte
 
 // initializes the gplus provider
 func init() {
@@ -74,6 +77,10 @@ func init() {
 	}
 	json.Unmarshal(file, &gplus)
 	gplus.setConfig()
+	publicKey, err = ioutil.ReadFile("./rsa_key")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // gets oauth url
@@ -121,4 +128,28 @@ func fetchToken(code string) Token {
 	var token Token
 	json.Unmarshal(body, &token)
 	return token
+}
+
+// creates jwt string from user and token
+func createJWT(user User, userToken Token) string {
+	token := jwt.New(jwt.SigningMethodHS256)
+	token.Claims["user"] = user
+	token.Claims["token"] = userToken.AccessToken
+	token.Claims["exp"] = time.Now().Add(time.Second * time.Duration(userToken.ExpiresIn)).Unix()
+	tokenString, err := token.SignedString(publicKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return tokenString
+}
+
+// authentcates user token
+func authenticate(req *http.Request) (bool, error) {
+	token, err := jwt.ParseFromRequest(req, func(token *jwt.Token) (interface{}, error) {
+		return publicKey, nil
+	})
+	if err == nil && token.Valid {
+		return true, nil
+	}
+	return false, err
 }

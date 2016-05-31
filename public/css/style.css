@@ -12,3 +12,8 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.picture {
+  witdh: 400px;
+  height: 400px;
+}

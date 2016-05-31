@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -13,10 +12,32 @@ type attributes struct {
 	Name  string
 }
 
+// authentication json
+type authentication struct {
+	Authorized bool   `json:"authorized"`
+	Error      string `json:"error"`
+}
+
 // index route
 func index(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 	attr := attributes{Title: "Index"}
 	renderTemplate(res, "index", &attr)
+}
+
+// auth route for oauth authentication
+func auth(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	result, err := authenticate(req)
+	data := authentication{result, ""}
+	if err != nil {
+		data.Error = err.Error()
+	}
+	sendJSON(res, data)
+}
+
+// login route to store token and redirect to index
+func login(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Login"}
+	renderTemplate(res, "login", &attr)
 }
 
 // OAuth google login route
@@ -28,14 +49,9 @@ func OAuth(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 // OAuthCallback google login route
 func OAuthCallback(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
 	code := req.URL.Query().Get("code")
-	token := fetchToken(code)
-	user := fetchUser(token)
-	fmt.Printf("user: %v", user)
-	// next steps:
-	// create jwt from user info
-	// store in client localstorage
-	// store users
-	// redirect to homepage after logged in with Google
-	attr := attributes{Title: "Index"}
-	renderTemplate(res, "index", &attr)
+	userToken := fetchToken(code)
+	user := fetchUser(userToken)
+	token := createJWT(user, userToken)
+	url := "/login?token=" + token
+	http.Redirect(res, req, url, http.StatusTemporaryRedirect)
 }
