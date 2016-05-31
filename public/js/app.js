@@ -17,6 +17,7 @@ $(function () {
           logOut();
         } else {
           $('.login').css('display', 'none');
+          $('.logout').css('display', 'block');
           var user = getUser();
           display(user);
         }
@@ -25,7 +26,7 @@ $(function () {
         console.error(error)
       })
   } else {
-    $('.logout').css('display', 'none');
+    $('.login').css('display', 'block');
   }
 })
 

@@ -1,9 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body {
-  color: white;
   font-family: Roboto, sans-serif;
-  background: rebeccapurple;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -13,7 +11,33 @@ main {
   flex: 1 0 auto;
 }
 
+.logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 90px;
+}
+
+.title {
+  padding-left: 100px;
+}
+
+@media (max-width: 500px) {
+  .title {
+    padding-left: 0;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+/*Oauth*/
+
 .picture {
   witdh: 400px;
   height: 400px;
+}
+
+.side-nav a.logout, .logout {
+  display: none;
 }

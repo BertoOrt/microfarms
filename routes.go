@@ -20,8 +20,50 @@ type authentication struct {
 
 // index route
 func index(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
-	attr := attributes{Title: "Index"}
+	attr := attributes{Title: "Micro Farms Colorado"}
 	renderTemplate(res, "index", &attr)
+}
+
+// about route
+func about(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - About"}
+	renderTemplate(res, "about", &attr)
+}
+
+// produce route
+func produce(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - Produce"}
+	renderTemplate(res, "produce", &attr)
+}
+
+// csa route
+func csa(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - CSA"}
+	renderTemplate(res, "csa", &attr)
+}
+
+// become route
+func become(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - Become A Micro Farm"}
+	renderTemplate(res, "become", &attr)
+}
+
+// careers route
+func careers(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - Careers"}
+	renderTemplate(res, "careers", &attr)
+}
+
+// news route
+func news(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - News & Events"}
+	renderTemplate(res, "news", &attr)
+}
+
+// contact route
+func contact(res http.ResponseWriter, req *http.Request, ps httprouter.Params) {
+	attr := attributes{Title: "Micro Farms Colorado - Contact"}
+	renderTemplate(res, "contact", &attr)
 }
 
 // auth route for oauth authentication
