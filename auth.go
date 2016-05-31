@@ -7,11 +7,9 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"os"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
 )
 
@@ -67,10 +65,6 @@ var publicKey []byte
 
 // initializes the gplus provider
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 	file, err := ioutil.ReadFile("./gplus.json")
 	if err != nil {
 		log.Fatal(err)
@@ -89,8 +83,7 @@ func getAuthURL() string {
 	if gplus.prompt != nil {
 		opts = append(opts, gplus.prompt)
 	}
-	state := os.Getenv("TOKEN_SECRET")
-	url := gplus.config.AuthCodeURL(state, opts...)
+	url := gplus.config.AuthCodeURL("state", opts...)
 	return url
 }
 

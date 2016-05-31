@@ -1,5 +1,4 @@
 .env
-google-oauth.json
 rsa_key
 tmp
 gplus.json
