@@ -1,6 +1,7 @@
 $(function () {
   $('.button-collapse').sideNav();
   $('.dropdown-button').dropdown();
+  $('.parallax').parallax();
   $('.logout').click(function () {
     logOut();
   })

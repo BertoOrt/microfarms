@@ -1,8 +1,9 @@
-{{ define "index" }} {{ template "_header" . }}
+{{ define "navbar" }}
 
-<main>
-  <div class="parallax-container">
-    <nav class="indexNav">
+<header>
+  <nav>
+    <div class="nav-wrapper light-green">
+      <a href="/" class="brand-logo"> <img class="logo" src="/public/img/logo.gif"> <span class="title"> Micro Farms Colorado</span></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="produceDropdown" class="dropdown-content">
         <li><a class="light-green-text" href="/find-our-produce">Find Our Produce</a></li>
@@ -20,10 +21,7 @@
         <li><a class="light-green-text" href="/become-a-micro-farm">Become A Micro Farm</a></li>
         <li><a class="light-green-text" href="/careers">Careers</a></li>
       </ul>
-      <ul class="left menu">
-        <li><a href="/">Micro Farms Colorado</a></li>
-      </ul>
-      <ul class="right menu">
+      <ul class="right hide-on-med-and-down">
         <li><a href="/about">About</a></li>
         <li><a class="dropdown-button" href="#!" data-activates="produceDropdown">Produce<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a class="dropdown-button" href="#!" data-activates="joinDropdown">Join<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -43,43 +41,8 @@
         <!-- <li><a class="login" href="/google"><i class="fa fa-6 fa-google-plus-official" aria-hidden="true"></i> Login</a></li>
         <li><a class="logout" href="#">Logout</a></li> -->
       </ul>
-    </nav>
-    <content>
-      <img class="main-logo" src="/public/img/logo.gif" alt="logo" />
-      <h1>Micro Farms Colorado</h1>
-      No Herbicides.
-      No Pesticides.
-      No Chemical Fertilizers
-      <br>
-    </content>
-    <div class="parallax"><img src="http://mikesjj.com/vegetables.jpg"></div>
-  </div>
-  <section class="info">
-    <content>
-      <span>
-        Micro Farms is turning people’s yards into hyper-local, organically grown food!
-      </span>
-    </content>
-    <hr>
-    <article class="two-column">
-      <section>
-        <h4>Who are we?</h4>
-        <p>
-          Micro Farms is an urban farming social-enterprise transforming underutilized homeowner resources into local and healthy food producing systems.
-        </p>
-      </section>
-      <img src="https://scontent-iad3-1.cdninstagram.com/t51.2885-15/e35/12935068_273926936272603_1816277072_n.jpg?ig_cache_key=MTIyMzU2MjI0OTIyNDY1NzQ1Ng%3D%3D.2" alt="" />
-    </article>
-    <article class="two-column">
-      <img src="https://scontent-iad3-1.cdninstagram.com/t51.2885-15/e35/12935068_273926936272603_1816277072_n.jpg?ig_cache_key=MTIyMzU2MjI0OTIyNDY1NzQ1Ng%3D%3D.2" alt="" />
-      <section>
-        <h4>What are we?</h4>
-        <p>
-          Micro Farms is an urban farming social-enterprise transforming underutilized homeowner resources into local and healthy food producing systems.
-        </p>
-      </section>
-    </article>
-  </section>
-</main>
+    </div>
+  </nav>
+</header>
 
-{{ template "_footer" . }} {{ end }}
+{{ end }}
