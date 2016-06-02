@@ -1,0 +1,26 @@
+@media (max-width: 500px) {
+  .title {
+    padding-left: 0;
+  }
+  .logo {
+    display: none;
+  }
+  article {
+    &.two-column{
+      flex-direction: column;
+      section {
+        width: 90%;
+        order: 1;
+      }
+      div {
+        order: 2;
+      }
+    }
+  }
+  .info {
+    content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

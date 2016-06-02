@@ -1,0 +1,102 @@
+.parallax-container {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 0 1px $lightgray;
+  padding-bottom: 10%;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  span {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  &.banner {
+    justify-content: center;
+    width: 100%;
+    height: 45vh;
+    padding: 0;
+  }
+}
+
+.info {
+  display: flex;
+  /*justify-content: center;*/
+  flex-direction: column;
+  align-items: center;
+  content {
+    display: flex;
+    padding: 3em;
+    text-align: center;
+    font-size: 2em;
+    width: 90%;
+    border-bottom: 1px solid $lightgray;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    button {
+      margin-top: 1.5em;
+      font-size: .7em;
+    }
+    span {
+      display: block;
+      width: 70%;
+    }
+  }
+}
+
+article {
+  section {
+    display: flex;
+    width: 40%;
+    heigth: 30%;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  &.two-column {
+    font-size: 1.2em;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &.two-column.hr {
+    border-bottom: 1px solid $lightgray;
+  }
+  img {
+    opacity: 0;
+    margin: 2em;
+    border-radius: 5px;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.main-logo {
+  width: 30%;
+  padding-top: 5%;
+}
+
+.two-column p {
+  margin: 2em 3em;
+}
+
+.two-column h4 {
+  margin-top: 1.5em;
+}
+
+.signature {
+  width: 70%;
+}
+
+.quote {
+  @extend .signature;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: .5em;
+}

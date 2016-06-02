@@ -5,6 +5,15 @@ $(function () {
   $('.logout').click(function () {
     logOut();
   })
+  $('.find-our-produce').click(function () {
+    window.location = "/find-our-produce"
+  })
+  var options = [
+    {selector: 'article img', offset: 200, callback: function() {
+      Materialize.fadeInImage("article img");
+    } }
+  ];
+  Materialize.scrollFire(options);
   if(localStorage.token) {
     $.ajaxSetup({
       headers: {
